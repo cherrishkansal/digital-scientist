@@ -1,7 +1,11 @@
+from fastapi import FastAPI, UploadFile, File, Form
+import shutil
+import os
+from stats_engine import analyze_dataset
 from hypothesis import generate_hypothesis
 from evidence import analyze_evidence
 from arxiv_search import search_arxiv
-from fastapi import FastAPI
+
 
 app = FastAPI()
 
@@ -45,4 +49,25 @@ def full_research(claim: str):
         "hypothesis": hypothesis,
         "papers": papers,
         "evidence_analysis": evidence
+    }
+
+@app.post("/analyze-dataset")
+async def analyze_uploaded_dataset(
+    file: UploadFile = File(...),
+    independent_col: str = Form(...),
+    dependent_col: str = Form(...)
+):
+    upload_dir = "uploads"
+    os.makedirs(upload_dir, exist_ok=True)
+
+    file_path = os.path.join(upload_dir, file.filename)
+
+    with open(file_path, "wb") as buffer:
+        shutil.copyfileobj(file.file, buffer)
+
+    result = analyze_dataset(file_path, independent_col, dependent_col)
+
+    return {
+        "filename": file.filename,
+        "analysis": result
     }
