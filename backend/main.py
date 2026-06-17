@@ -1,3 +1,6 @@
+from pdf_generator import create_pdf_report
+from report_generator import generate_report
+from plot_generator import generate_scatter_plot
 from fastapi import FastAPI, UploadFile, File, Form
 import shutil
 import os
@@ -66,8 +69,20 @@ async def analyze_uploaded_dataset(
         shutil.copyfileobj(file.file, buffer)
 
     result = analyze_dataset(file_path, independent_col, dependent_col)
-
+    report = generate_report(result)
+    pdf_file = create_pdf_report(
+    report,
+    "research_report.pdf"
+)
+    plot_path = generate_scatter_plot(
+    file_path,
+    independent_col,
+    dependent_col
+)
     return {
-        "filename": file.filename,
-        "analysis": result
-    }
+    "filename": file.filename,
+    "analysis": result,
+    "plot_file": plot_path,
+    "research_report": report,
+    "pdf_report": pdf_file
+}
