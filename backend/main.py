@@ -1,3 +1,4 @@
+from vector_store import add_papers_to_vector_store, search_similar_papers
 from pdf_generator import create_pdf_report
 from report_generator import generate_report
 from plot_generator import generate_scatter_plot
@@ -39,6 +40,9 @@ def get_papers(topic: str):
 @app.get("/full-research")
 def full_research(claim: str):
     papers = search_arxiv(claim, max_results=2)
+    add_papers_to_vector_store(papers)
+
+    similar_papers = search_similar_papers(claim)
 
     try:
         hypothesis = generate_hypothesis(claim)
@@ -84,5 +88,6 @@ async def analyze_uploaded_dataset(
     "analysis": result,
     "plot_file": plot_path,
     "research_report": report,
-    "pdf_report": pdf_file
+    "pdf_report": pdf_file,
+    "similar_papers": similar_papers
 }

@@ -126,12 +126,28 @@ with tab1:
                         </div>
                         """, unsafe_allow_html=True)
 
+                        st.markdown("### Similar Research Papers")
+
+                        similar_papers = data.get("similar_papers", [])
+
+                        if similar_papers:
+                            for paper in similar_papers:
+                                metadata = paper["metadata"]
+
+                                with st.expander(metadata["title"]):
+                                    st.write("Published:", metadata.get("published", "N/A"))
+                                    st.write("Similarity Score:", metadata.get("similarity_score", "N/A"))
+                                    st.write("Link:", metadata.get("link", "N/A"))
+                                    st.write(paper["content"][:500])
+                        else:
+                            st.info("No similar papers found.")
+
                     else:
                         st.error("Backend returned an error.")
 
                 except Exception as e:
                     st.error(f"Could not connect to backend: {e}")
-
+                    
 with tab2:
     st.markdown("## Dataset Statistical Analysis")
 
