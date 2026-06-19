@@ -26,5 +26,19 @@
         "link": "https://arxiv.org/abs/1303.0042v1",
         "published": "2013-02-28T23:24:41Z",
         "content": "Twelve Years of Education and Public Outreach with the Fermi Gamma-ray Space Telescope During the past twelve years, NASA's Fermi Gamma-ray Space Telescope has supported a wide range of Education and Public Outreach (E/PO) activities, targeting K-14 students and the general public. The purpose of the Fermi E/PO program is to increase student and public understanding of the science of the high-energy Universe, through inspiring, engaging and educational activities linked to the mission's science objectives. The E/PO program has additional more general goals, including increasing th"
+    },
+    {
+        "title": "Competing Visions of Ethical AI: A Case Study of OpenAI",
+        "summary": "Introduction. AI Ethics is framed distinctly across actors and stakeholder groups. We report results from a case study of OpenAI analysing ethical AI discourse. Method. Research addressed: How has OpenAI's public discourse leveraged 'ethics', 'safety', 'alignment' and adjacent related concepts over time, and what does discourse signal about framing in practice? A structured corpus, differentiating between communication for a general audience and communication with an academic audience, was assem",
+        "link": "https://arxiv.org/abs/2601.16513v1",
+        "published": "2026-01-23T07:26:45Z",
+        "content": "Competing Visions of Ethical AI: A Case Study of OpenAI Introduction. AI Ethics is framed distinctly across actors and stakeholder groups. We report results from a case study of OpenAI analysing ethical AI discourse. Method. Research addressed: How has OpenAI's public discourse leveraged 'ethics', 'safety', 'alignment' and adjacent related concepts over time, and what does discourse signal about framing in practice? A structured corpus, differentiating between communication for a general audience and communication with an academic audience, was assem"
+    },
+    {
+        "title": "AI prediction leads people to forgo guaranteed rewards",
+        "summary": "Artificial intelligence (AI) is understood to affect the content of people's decisions. Here, using a behavioral implementation of the classic Newcomb's paradox in 1,305 participants, we show that AI can also change how people decide. In this paradigm, belief in predictive authority can lead individuals to constrain decision-making, forgoing a guaranteed reward. Over 40% of participants treated AI as such a predictive authority. This significantly increased the odds of forgoing the guaranteed re",
+        "link": "https://arxiv.org/abs/2603.28944v1",
+        "published": "2026-03-30T19:36:10Z",
+        "content": "AI prediction leads people to forgo guaranteed rewards Artificial intelligence (AI) is understood to affect the content of people's decisions. Here, using a behavioral implementation of the classic Newcomb's paradox in 1,305 participants, we show that AI can also change how people decide. In this paradigm, belief in predictive authority can lead individuals to constrain decision-making, forgoing a guaranteed reward. Over 40% of participants treated AI as such a predictive authority. This significantly increased the odds of forgoing the guaranteed re"
     }
 ]

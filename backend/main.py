@@ -1,3 +1,5 @@
+from vector_store import search_similar_papers
+from research_chat import answer_research_question
 from vector_store import add_papers_to_vector_store, search_similar_papers
 from pdf_generator import create_pdf_report
 from report_generator import generate_report
@@ -91,3 +93,7 @@ async def analyze_uploaded_dataset(
     "pdf_report": pdf_file,
     "similar_papers": similar_papers
 }
+
+@app.get("/research-chat")
+def research_chat(question: str):
+    return answer_research_question(question)

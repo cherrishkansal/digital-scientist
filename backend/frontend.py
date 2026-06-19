@@ -64,8 +64,8 @@ with right:
 
 st.divider()
 
-tab1, tab2, tab3 = st.tabs(
-    ["Research Assistant", "Dataset Scientist", "Project Summary"]
+tab1, tab2, tab3, tab4 = st.tabs(
+    ["Research Assistant", "Dataset Scientist", "Research Chat", "Project Summary"]
 )
 
 with tab1:
@@ -247,25 +247,46 @@ with tab2:
                     st.error(f"Could not analyze dataset: {e}")
 
 with tab3:
-    st.markdown("## Project Summary")
+    st.markdown("## Research Chat")
 
-    st.markdown("""
-    ### Digital Scientist combines:
+    question = st.text_area(
+        "Ask a question about stored research papers",
+        placeholder="Example: What do the stored papers say about AI in education?",
+        height=120
+    )
 
-    - LLM-based hypothesis generation
-    - Academic paper retrieval using arXiv
-    - Evidence analysis
-    - CSV upload and statistical testing
-    - Pearson correlation
-    - P-value calculation
-    - Scatter plot generation
-    - PDF research report generation
+    if st.button("Ask Research Assistant", use_container_width=True):
+        if not question.strip():
+            st.warning("Please enter a question.")
+        else:
+            with st.spinner("Searching stored papers..."):
+                response = requests.get(
+                    f"{API_URL}/research-chat",
+                    params={"question": question},
+                    timeout=60
+                )
 
-    ### Placement Pitch
+                if response.status_code == 200:
+                    data = response.json()
 
-    **Digital Scientist is an AI-powered research assistant that converts claims into testable hypotheses, retrieves academic papers, evaluates evidence, and validates uploaded datasets using statistical methods.**
-    """)
+                    st.success("Answer generated")
 
-st.divider()
+                    st.markdown("### Answer")
+                    st.markdown(f"""
+                    <div class="card">
+                    {data.get("answer", "No answer generated.")}
+                    </div>
+                    """, unsafe_allow_html=True)
 
-st.caption("Built with FastAPI, Gemini, arXiv API, Pandas, SciPy, Matplotlib, ReportLab, and Streamlit.")
+                    st.markdown("### Sources")
+
+                    for source in data.get("sources", []):
+                        metadata = source["metadata"]
+
+                        with st.expander(metadata["title"]):
+                            st.write("Published:", metadata.get("published", "N/A"))
+                            st.write("Similarity Score:", metadata.get("similarity_score", "N/A"))
+                            st.write("Link:", metadata.get("link", "N/A"))
+                            st.write(source["content"][:500])
+                else:
+                    st.error("Backend returned an error.")
