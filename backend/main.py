@@ -44,8 +44,21 @@ def full_research(claim: str):
     papers = search_arxiv(claim, max_results=2)
     add_papers_to_vector_store(papers)
 
-    similar_papers = search_similar_papers(claim)
+    similar_papers = search_similar_papers(claim, top_k=3)
 
+if not similar_papers:
+    similar_papers = [
+        {
+            "content": paper["title"] + " " + paper["summary"],
+            "metadata": {
+                "title": paper["title"],
+                "link": paper["link"],
+                "published": paper["published"],
+                "similarity_score": "Newly retrieved"
+            }
+        }
+        for paper in papers
+    ]
     try:
         hypothesis = generate_hypothesis(claim)
         evidence = analyze_evidence(hypothesis, papers)
