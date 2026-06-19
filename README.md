@@ -48,3 +48,7 @@ streamlit run frontend.py
 ## Project Goal
 
 To combine AI reasoning, academic research retrieval, statistical analysis, and report generation into a single research assistant platform.
+
+- Vector-based similar paper retrieval
+- Research Chat using stored papers
+- RAG-style question answering
