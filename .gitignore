@@ -2,11 +2,11 @@ venv/
 backend/venv/
 .env
 backend/.env
-__pycache__/
-*/__pycache__/
-*.pyc
-.vscode/
 uploads/
 plots/
 *.pdf
 __pycache__/
+*/__pycache__/
+chroma_db/
+vector_papers.json
+.vscode/
