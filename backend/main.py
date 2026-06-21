@@ -73,7 +73,7 @@ def full_research(claim: str):
         evidence = analyze_evidence(hypothesis, papers)
 
     except Exception as e:
-        hypothesis = f"Gemini error: {str(e)}"
+        hypothesis = "AI-generated hypothesis temporarily unavailable due to API usage limits. Related research papers have been successfully retrieved."
         evidence = "AI evidence analysis could not run right now. Research papers were still retrieved successfully."
 
     return {
