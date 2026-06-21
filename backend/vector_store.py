@@ -22,14 +22,17 @@ def save_store(papers):
 def add_papers_to_vector_store(papers):
     stored_papers = load_store()
 
+    existing_titles = {paper["title"] for paper in stored_papers}
+
     for paper in papers:
-        stored_papers.append({
-            "title": paper["title"],
-            "summary": paper["summary"],
-            "link": paper["link"],
-            "published": paper["published"],
-            "content": paper["title"] + " " + paper["summary"]
-        })
+        if paper["title"] not in existing_titles:
+            stored_papers.append({
+                "title": paper["title"],
+                "summary": paper["summary"],
+                "link": paper["link"],
+                "published": paper["published"],
+                "content": paper["title"] + " " + paper["summary"]
+            })
 
     save_store(stored_papers)
 
