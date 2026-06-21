@@ -71,8 +71,9 @@ def full_research(claim: str):
     try:
         hypothesis = generate_hypothesis(claim)
         evidence = analyze_evidence(hypothesis, papers)
-    except Exception:
-        hypothesis = "Gemini quota exceeded or unavailable."
+
+    except Exception as e:
+        hypothesis = f"Gemini error: {str(e)}"
         evidence = "AI evidence analysis could not run right now. Research papers were still retrieved successfully."
 
     return {
