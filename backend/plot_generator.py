@@ -9,7 +9,7 @@ def generate_scatter_plot(file_path, x_column, y_column):
 
     os.makedirs("plots", exist_ok=True)
 
-    plt.figure(figsize=(8, 5))
+    plt.figure(figsize=(6, 3))
     plt.scatter(df[x_column], df[y_column])
 
     plt.xlabel(x_column)
